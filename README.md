@@ -7,4 +7,11 @@ User stories:
 * I can get a list of the most recently submitted search strings.
 
 ### Example usage:
-`https://nova-bathroom.glitch.me/api/imagesearch/lolcats%20funny?offset=10`
+
+For searching an image : 
+
+`https://nova-bathroom.glitch.me/api/imagesearch/{search-string}?offset={pagination}`
+
+Recent search string : 
+
+`https://nova-bathroom.glitch.me/api/latest/imagesearch/`
