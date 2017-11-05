@@ -50,7 +50,7 @@ app.get("/api/latest/imagesearch/", function (request, response) {
   mongodb.connect(dburl,function(err,db){
     if(err) throw err
     var collection = db.collection('search')
-    collection.find().sort({ when: -1 }).limit(10).toArray(function(err,doc){
+    collection.find({}, { _id: 0 }).sort({ when: -1 }).limit(10).toArray(function(err,doc){
       if(err) throw err;
       response.send(doc)
     })
