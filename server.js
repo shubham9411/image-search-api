@@ -41,8 +41,18 @@ var listener = app.listen(process.env.PORT || 8000, function () {
 
 app.get("/api/imagesearch/:search", function (request, response) {  
   var searchquery = request.params.search;
-  client.search(searchquery)
+  var pagination = request.query.offset || 1;
+  client.search(searchquery, {page: pagination})
 	  .then(images => {
-    response.send(images)
+    var imageres = [];
+    images.forEach(ar=>{
+      var obj={};
+      obj['url'] = ar.url;
+      obj['description'] = ar.description;
+      obj['thumbnail'] = ar.thumbnail.url;
+      obj['context'] = ar.parentPage;
+      imageres.push(obj)
+    })
+    response.send(imageres)
 	});
 });
